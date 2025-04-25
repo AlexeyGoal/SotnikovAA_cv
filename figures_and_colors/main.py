@@ -5,12 +5,12 @@ from skimage.color import rgb2hsv
 
 def group_hues(hue_dict, threshold=0.03):
     grouped = {}
-    hues = sorted(hue_dict.keys())
+    colors = sorted(hue_dict.keys())
         
-    current_hue = hues[0]
+    current_hue = colors[0]
     current_count = hue_dict[current_hue]
     
-    for hue in hues[1:]:
+    for hue in colors[1:]:
         if abs(hue - current_hue) <= threshold:
             current_count += hue_dict[hue]
             current_hue = (current_hue * (current_count - hue_dict[hue]) + hue * hue_dict[hue]) / current_count
@@ -37,14 +37,14 @@ rectangle_colors = {}
 
 for region in regions:
     y, x = region.centroid
-    hue = round(rgb2hsv(image[int(y), int(x)])[0], 2)
+    color = round(rgb2hsv(image[int(y), int(x)])[0], 2)
     mask = region.image
     
     if np.all(mask):  
-        rectangle_colors[hue] = rectangle_colors.get(hue, 0) + 1
+        rectangle_colors[color] = rectangle_colors.get(color, 0) + 1
         
     else:  
-        circle_colors[hue] = circle_colors.get(hue, 0) + 1
+        circle_colors[color] = circle_colors.get(color, 0) + 1
 
 
 
