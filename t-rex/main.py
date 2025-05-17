@@ -50,10 +50,10 @@ while True:
                 
         pg.press('space')
                                                                
-    if w < max_w:
+    if widht < max_w:
         i += 1                   
         if i == 100:
-            w += 3
+            widht += 3
             screen = {'top':350, 'left': 665, 'width': widht, 'height': 25}
             i = 1 
                     
